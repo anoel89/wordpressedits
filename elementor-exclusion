@@ -1,0 +1,9 @@
+// Exclude specific page from Elementor Maintenance Mode
+function custom_elementor_maintenance_mode_exclusion() {
+    // Check if we're on the desired page (replace 'portal' with the slug of your page)
+    if ( is_page( 'portal' ) ) {
+        // Remove Elementor's Maintenance Mode hook for this page
+        remove_action( 'template_redirect', [ \Elementor\Plugin::$instance->maintenance_mode, 'template_redirect' ], 11 );
+    }
+}
+add_action( 'wp', 'custom_elementor_maintenance_mode_exclusion' );
